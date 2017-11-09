@@ -74,7 +74,7 @@ const noObjectFn = () => {
 }
 
 const newTodo = { label: 'Git gud!', }
-const newList = { name: 'Learn', }
+const newList = { todos: [ 'b', ], }
 
 /**
  * 1. It throws if the specified collection doesn't exist or it's not a collection.
@@ -113,7 +113,11 @@ describe('patch', () => {
 
 describe('patch in collection object', () => {
   test('It partially updates an existing resource', () => {
-    expect(clerk.patch('todos', newTodo, 'b')).to.deep.equal({ ...state.todos.b, ...newTodo, })
+    expect(clerk.patch('todos', newTodo, 'b')).to.deep.equal({
+      _id: 'b',
+      label: 'Git gud!',
+      completed: true,
+    })
     expect(Object.values(state.todos)).to.have.length(2)
   })
 })
@@ -127,8 +131,9 @@ describe('patch in collection array', () => {
 
   test('It partially updates an existing resource', () => {
     expect(clerk.patch('lists', newList, { id: 'x', })).to.deep.equal({
-      ...state.lists[0],
-      ...newList,
+      id: 'x',
+      name: 'Shopping',
+      todos: [ 'b', ],
     })
     expect(state.lists).to.have.length(2)
   })

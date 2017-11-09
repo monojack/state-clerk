@@ -15,11 +15,13 @@ function patchInObject (collection, payload, key) {
 
   if (isNil(this[collection][key])) return
 
+  const updatedResource = merge(this[collection][key], payload)
+
   this[collection] = {
     ...(this[collection] || {}),
-    [key]: merge(this[collection[key]], payload),
+    [key]: updatedResource,
   }
-  return payload
+  return updatedResource
 }
 
 function patchInArray (collection, payload, key) {
@@ -32,15 +34,15 @@ function patchInArray (collection, payload, key) {
   const idx = this[collection].findIndex(item => item[k] === v)
 
   if (idx < 0) return
+  const updatedResource = merge(this[collection][idx], payload)
 
-  const resource = { ...(this[collection][idx] || {}), ...payload, }
   this[collection] = [
     ...this[collection].slice(0, idx),
-    resource,
+    updatedResource,
     ...this[collection].slice(idx + 1),
   ]
 
-  return resource
+  return updatedResource
 }
 
 function patch (state) {
