@@ -1,6 +1,6 @@
 {
   "name": "state-clerk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easy CRUD operations for managing your state in an immutable way",
   "main": "./lib/index.js",
   "module": "es/index.js",
