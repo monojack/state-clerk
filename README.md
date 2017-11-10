@@ -2,6 +2,8 @@
 
 Perform immutable CRUD operation on your application state.
 
+[![Build Status](https://travis-ci.org/monojack/state-clerk.svg?branch=master)](https://travis-ci.org/monojack/state-clerk)
+
 ## Table of contents
   - [Installation](#installation)
   - [Creating an instance](#creating-an-instance)
