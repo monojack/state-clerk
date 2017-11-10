@@ -11,9 +11,9 @@ Perform immutable CRUD operation on your application state.
     - [put](#put)
     - [patch](#patch)
     - [delete](#delete)
-    - [getCollection](#getCollection)
-    - [addCollection](#addCollection)
-    - [removeCollection](#removeCollection)
+    - [getCollection](#getcollection)
+    - [addCollection](#addcollection)
+    - [removeCollection](#removecollection)
 
 ### Installation
 ```bash
