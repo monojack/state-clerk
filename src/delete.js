@@ -1,5 +1,5 @@
 import isArray from 'lodash/isArray'
-import isObject from 'lodash/isObject'
+import isPlainObject from 'lodash/isPlainObject'
 import isNil from 'lodash/isNil'
 import omit from 'lodash/omit'
 
@@ -14,7 +14,7 @@ function removeFromObject (collection, key) {
 }
 
 function removeFromArray (collection, key) {
-  if (!isObject(key)) return
+  if (!isPlainObject(key)) return
 
   const [ k, v, ] = Object.entries(key)[0]
 

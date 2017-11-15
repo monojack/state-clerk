@@ -1,6 +1,6 @@
 import invariant from 'invariant'
 import isArray from 'lodash/isArray'
-import isObject from 'lodash/isObject'
+import isPlainObject from 'lodash/isPlainObject'
 import isNil from 'lodash/isNil'
 
 import { validateCollection, } from './utils'
@@ -27,7 +27,7 @@ function putInArray (collection, payload, key) {
   }
 
   invariant(
-    isObject(key),
+    isPlainObject(key),
     'When updating a resource inside a list you have to specify an identifier object containing the key/value pair you want to match.'
   )
 

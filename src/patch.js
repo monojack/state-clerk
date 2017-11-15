@@ -1,6 +1,6 @@
 import invariant from 'invariant'
 import isArray from 'lodash/isArray'
-import isObject from 'lodash/isObject'
+import isPlainObject from 'lodash/isPlainObject'
 import merge from 'lodash/merge'
 import isNil from 'lodash/isNil'
 
@@ -26,7 +26,7 @@ function patchInObject (collection, payload, key) {
 
 function patchInArray (collection, payload, key) {
   invariant(
-    isObject(key),
+    isPlainObject(key),
     'When patching a resource inside a list you have to specify an identifier object containing the key/value pair you want to match.'
   )
 

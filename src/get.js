@@ -1,12 +1,12 @@
 import isArray from 'lodash/isArray'
-import isObject from 'lodash/isObject'
+import isPlainObject from 'lodash/isPlainObject'
 import isNil from 'lodash/isNil'
 
 import { validateCollection, } from './utils'
 
 // GET
 function getFromObject (collection, id) {
-  if (isObject(id)) {
+  if (isPlainObject(id)) {
     const entries = Object.entries(id)
     const [ key, value, ] = entries[0] || {}
     return Object.entries(collection)
@@ -23,7 +23,7 @@ function getFromObject (collection, id) {
 }
 
 function getFromArray (collection, id) {
-  if (!isObject(id)) return []
+  if (!isPlainObject(id)) return []
 
   const [ key, value, ] = Object.entries(id)[0]
   return collection.filter(resource => resource[key] === value)
