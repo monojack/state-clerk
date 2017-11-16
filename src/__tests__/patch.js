@@ -80,6 +80,7 @@ const newList = { todos: [ 'b', ], }
  * 1. It throws if the specified collection doesn't exist or it's not a collection.
  * 2. It throws if no identifier provided.
  * 3. It returns undefined if no match found.
+ * 4. Id doesn't merge keys that have undefined value
  *
  *  For collection objects:
  * 1. It partially updates an existing resource and returns it.
@@ -108,6 +109,21 @@ describe('patch', () => {
   test('It returns undefined if no match found', () => {
     expect(clerk.patch('todos', newTodo, 'q')).to.be.undefined
     expect(clerk.patch('lists', newList, { id: 'q', })).to.be.undefined
+  })
+
+  test("Id doesn't merge keys that have undefined value", () => {
+    expect(clerk.patch('todos', { label: undefined, }, 'a')).to.deep.equal({
+      _id: 'a',
+      label: 'Buy milk',
+      completed: false,
+    })
+    expect(
+      clerk.patch('lists', { name: undefined, }, { id: 'x', })
+    ).to.deep.equal({
+      id: 'x',
+      name: 'Shopping',
+      todos: [ 'a', ],
+    })
   })
 })
 

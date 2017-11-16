@@ -2,7 +2,7 @@ import invariant from 'invariant'
 import isNil from 'ramda/src/isNil'
 import merge from 'ramda/src/merge'
 
-import { validateCollection, isArray, isObject, } from './utils'
+import { validateCollection, isArray, isObject, removeUndefined, } from './utils'
 
 // PATCH
 function patchInObject (collection, payload, key) {
@@ -15,7 +15,7 @@ function patchInObject (collection, payload, key) {
 
   if (isNil(this[collection][key])) return
 
-  const updatedResource = merge(this[collection][key], payload)
+  const updatedResource = merge(this[collection][key], removeUndefined(payload))
 
   this[collection] = {
     ...(this[collection] || {}),
@@ -34,7 +34,7 @@ function patchInArray (collection, payload, key) {
   const idx = this[collection].findIndex(item => item[k] === v)
 
   if (idx < 0) return
-  const updatedResource = merge(this[collection][idx], payload)
+  const updatedResource = merge(this[collection][idx], removeUndefined(payload))
 
   this[collection] = [
     ...this[collection].slice(0, idx),

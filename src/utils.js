@@ -4,6 +4,7 @@ import isEmpty from 'ramda/src/isEmpty'
 import compose from 'ramda/src/compose'
 import typeOf from 'ramda/src/type'
 import equals from 'ramda/src/equals'
+import reject from 'ramda/src/reject'
 
 export const isNilOrEmpty = value => isNil(value) || isEmpty(value)
 
@@ -32,3 +33,5 @@ export const validateCollection = (col, collection) => {
     }" is not a collection. You can access it like any other property on the state object`
   )
 }
+
+export const removeUndefined = reject(isUndefined)
