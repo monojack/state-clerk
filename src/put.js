@@ -1,15 +1,13 @@
 import invariant from 'invariant'
 import isNil from 'ramda/src/isNil'
 
-import { validateCollection, isArray, isPlainObject, } from './utils'
+import { validateCollection, isArray, isObject, } from './utils'
 
 // PUT
 function putInObject (collection, payload, key) {
   invariant(
     !isNil(key),
-    `You are trying to update a resource but haven't specified the identifier. Try again with "clerk.put('${
-      collection
-    }', payload, identifier)"`
+    `You are trying to update a resource but haven't specified the identifier. Try again with "clerk.put('${collection}', payload, identifier)"`
   )
 
   this[collection] = {
@@ -27,18 +25,14 @@ function putInArray (collection, payload, key) {
   }
 
   invariant(
-    isPlainObject(key),
+    isObject(key),
     'When updating a resource inside a list you have to specify an identifier object containing the key/value pair you want to match.'
   )
 
   const [ k, v, ] = Object.entries(key)[0]
   const idx = this[collection].findIndex(item => item[k] === v)
 
-  this[collection] = [
-    ...this[collection].slice(0, idx),
-    payload,
-    ...this[collection].slice(idx + 1),
-  ]
+  this[collection] = [ ...this[collection].slice(0, idx), payload, ...this[collection].slice(idx + 1), ]
   return payload
 }
 

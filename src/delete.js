@@ -1,7 +1,7 @@
 import isNil from 'ramda/src/isNil'
 import omit from 'ramda/src/omit'
 
-import { validateCollection, isArray, isPlainObject, } from './utils'
+import { validateCollection, isArray, isObject, } from './utils'
 
 function removeFromObject (collection, key) {
   const resource = this[collection][key]
@@ -12,7 +12,7 @@ function removeFromObject (collection, key) {
 }
 
 function removeFromArray (collection, key) {
-  if (!isPlainObject(key)) return
+  if (!isObject(key)) return
 
   const [ k, v, ] = Object.entries(key)[0]
 
@@ -20,10 +20,7 @@ function removeFromArray (collection, key) {
   if (idx < 0) return
 
   const resource = this[collection][idx]
-  this[collection] = [
-    ...this[collection].slice(0, idx),
-    ...this[collection].slice(idx + 1),
-  ]
+  this[collection] = [ ...this[collection].slice(0, idx), ...this[collection].slice(idx + 1), ]
 
   return resource
 }

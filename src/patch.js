@@ -2,7 +2,7 @@ import invariant from 'invariant'
 import isNil from 'ramda/src/isNil'
 import merge from 'ramda/src/merge'
 
-import { validateCollection, isArray, isPlainObject, } from './utils'
+import { validateCollection, isArray, isObject, } from './utils'
 
 // PATCH
 function patchInObject (collection, payload, key) {
@@ -26,7 +26,7 @@ function patchInObject (collection, payload, key) {
 
 function patchInArray (collection, payload, key) {
   invariant(
-    isPlainObject(key),
+    isObject(key),
     'When patching a resource inside a list you have to specify an identifier object containing the key/value pair you want to match.'
   )
 

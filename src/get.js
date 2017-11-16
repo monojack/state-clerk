@@ -1,10 +1,10 @@
 import isNil from 'ramda/src/isNil'
 
-import { validateCollection, isArray, isPlainObject, } from './utils'
+import { validateCollection, isArray, isObject, } from './utils'
 
 // GET
 function getFromObject (collection, id) {
-  if (isPlainObject(id)) {
+  if (isObject(id)) {
     const entries = Object.entries(id)
     const [ key, value, ] = entries[0] || {}
     return Object.entries(collection)
@@ -21,7 +21,7 @@ function getFromObject (collection, id) {
 }
 
 function getFromArray (collection, id) {
-  if (!isPlainObject(id)) return []
+  if (!isObject(id)) return []
 
   const [ key, value, ] = Object.entries(id)[0]
   return collection.filter(resource => resource[key] === value)

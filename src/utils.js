@@ -7,13 +7,13 @@ import equals from 'ramda/src/equals'
 
 export const isNilOrEmpty = value => isNil(value) || isEmpty(value)
 
-const isType = type => compose(equals(type), typeOf)
+export const isType = type => compose(equals(type), typeOf)
 
 export const isArray = isType('Array')
 
 export const isObject = isType('Object')
 
-export const isPlainObject = isType('Object')
+export const isUndefined = isType('Undefined')
 
 export const validateCollection = (col, collection) => {
   invariant(
