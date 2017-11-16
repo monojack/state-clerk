@@ -1,8 +1,7 @@
 import invariant from 'invariant'
-import isArray from 'lodash/isArray'
-import isNil from 'lodash/isNil'
+import isNil from 'ramda/src/isNil'
 
-import { validateCollection, } from './utils'
+import { validateCollection, isArray, } from './utils'
 
 // POST
 function postToObject (collection, payload, key) {
@@ -10,7 +9,9 @@ function postToObject (collection, payload, key) {
 
   invariant(
     !isNil(key),
-    `You are trying to post to a collection object but haven't specified an identifier. Try again with "clerk.post('${collection}', payload, identifier)"`
+    `You are trying to post to a collection object but haven't specified an identifier. Try again with "clerk.post('${
+      collection
+    }', payload, identifier)"`
   )
   this[collection] = {
     ...(this[collection] || {}),

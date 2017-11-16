@@ -1,15 +1,13 @@
-import isArray from 'lodash/isArray'
-import isPlainObject from 'lodash/isPlainObject'
-import isNil from 'lodash/isNil'
-import omit from 'lodash/omit'
+import isNil from 'ramda/src/isNil'
+import omit from 'ramda/src/omit'
 
-import { validateCollection, } from './utils'
+import { validateCollection, isArray, isPlainObject, } from './utils'
 
 function removeFromObject (collection, key) {
   const resource = this[collection][key]
   if (isNil(resource)) return
 
-  this[collection] = omit(this[collection], key)
+  this[collection] = omit([ key, ], this[collection])
   return resource
 }
 
@@ -22,7 +20,10 @@ function removeFromArray (collection, key) {
   if (idx < 0) return
 
   const resource = this[collection][idx]
-  this[collection] = [ ...this[collection].slice(0, idx), ...this[collection].slice(idx + 1), ]
+  this[collection] = [
+    ...this[collection].slice(0, idx),
+    ...this[collection].slice(idx + 1),
+  ]
 
   return resource
 }

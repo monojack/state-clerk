@@ -1,15 +1,15 @@
 import invariant from 'invariant'
-import isArray from 'lodash/isArray'
-import isPlainObject from 'lodash/isPlainObject'
-import isNil from 'lodash/isNil'
+import isNil from 'ramda/src/isNil'
 
-import { validateCollection, } from './utils'
+import { validateCollection, isArray, isPlainObject, } from './utils'
 
 // PUT
 function putInObject (collection, payload, key) {
   invariant(
     !isNil(key),
-    `You are trying to update a resource but haven't specified the identifier. Try again with "clerk.put('${collection}', payload, identifier)"`
+    `You are trying to update a resource but haven't specified the identifier. Try again with "clerk.put('${
+      collection
+    }', payload, identifier)"`
   )
 
   this[collection] = {

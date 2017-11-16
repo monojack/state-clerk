@@ -1,8 +1,6 @@
-import isArray from 'lodash/isArray'
-import isPlainObject from 'lodash/isPlainObject'
-import isNil from 'lodash/isNil'
+import isNil from 'ramda/src/isNil'
 
-import { validateCollection, } from './utils'
+import { validateCollection, isArray, isPlainObject, } from './utils'
 
 // GET
 function getFromObject (collection, id) {
